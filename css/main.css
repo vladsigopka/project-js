@@ -63,7 +63,7 @@ button {
 .review-form {
     width: 400px;
     padding: 20px;
-    margin: 40px;
+
     border: 1px solid #d8d8d8;
 }
 
@@ -86,4 +86,9 @@ textarea {
 .activeTab {
     color: #16C0B0;
     text-decoration: underline;
+}
+.picked {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
