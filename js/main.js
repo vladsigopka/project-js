@@ -32,6 +32,11 @@ Vue.component('producta', {
             <li>{{ size }}</li>
 
         </div>
+        <div class="material">
+        <select>
+        <option v-for="material in materials ">{{material}}</option>
+</select>
+</div>
 
             <span v-if="onSale">  {{Sale}} </span><br>
            
@@ -43,7 +48,11 @@ Vue.component('producta', {
                 Add to cart
             </button>
 
-            <button v-on:click="removeToCart">Remove to cart</button>
+            <button 
+            v-on:click="removeToCart"
+            >
+            Remove to cart
+            </button>
 
             
             
@@ -88,19 +97,15 @@ Vue.component('producta', {
             ],
 
             sizes: ['S', 'M', 'L', 'XL', 'XXL', 'XXXL'],
-            reviews: []
-
+            reviews: [],
+            materials: ['wool','cotton']
         }
     },
     methods: {
         addToCart() {
                 this.$emit('add-to-cart',
             this.variants[this.selectedVariant].variantId);
-
         },
-
-
-
         removeToCart(){
             this.$emit( 'remove-to-cart',
         this.variants[this.selectedVariant].variantId)
@@ -108,14 +113,10 @@ Vue.component('producta', {
         updateProduct(index) {
             this.selectedVariant = index;
         },
-
-
-
     },
     mounted() {
         eventBus.$on('review-submitted', productReview => {
             this.reviews.push(productReview)
-
         })
     },
 props: {
@@ -292,11 +293,10 @@ Vue.component('product-tabs', {
             required: true
         }
     },
-
     data() {
         return {
             tabs: ['Reviews', 'Make a Review', 'details', 'Shipping' ],
-            selectedTab: 'Reviews'  // устанавливается с помощью @click
+            selectedTab: 'Reviews'
         }
     },
     computed: {
